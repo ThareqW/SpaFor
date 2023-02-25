@@ -40,7 +40,7 @@ class formatter(ABC):
 class GoogleEarthFormatter(formatter):
     def __init__(self, Data_Frame: pd.DataFrame) -> None:
         self.DataFrame = Data_Frame
-
+    
     def _swapper(self, Series2Swap) -> None:
             
         def _swapPositions(list_, pos1 = 0, pos2 = 1):
@@ -63,7 +63,8 @@ class GoogleEarthFormatter(formatter):
 
         self.DataFrame[Series2Swap].apply(_swap_latLon)
 
-    def _str_concat(self, list_elements):
+    @staticmethod
+    def _str_concat(list_elements):
         to_str = [list(map(str, i)) for i in list_elements]
         l_str = [','.join(i) for i in to_str]
         complete_str = ';'.join(l_str)
